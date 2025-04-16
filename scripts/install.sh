@@ -29,6 +29,6 @@ helm install alloy grafana/alloy \
   --set-file configMap.config.alloy=../alloy/config.alloy
 
 echo "📦 Installing Cowrie..."
-helm install cowrie ./charts/cowrie --namespace cowrie-stack
+helm install cowrie ../charts/cowrie --namespace cowrie-stack
 
 echo "✅ Deployment complete! Access Grafana at http://<node-ip>:32000"
