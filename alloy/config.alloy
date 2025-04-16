@@ -1,0 +1,24 @@
+logging {
+  level = "info"
+  format = "logfmt"
+}
+
+discovery.files {
+  targets = [
+    {
+      __path__ = "/cowrie/logs/cowrie.json"
+      job = "cowrie"
+    }
+  ]
+}
+
+loki.write {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}
+
+loki.source.file {
+  targets = discovery.files.targets
+  forward_to = [loki.write.default.receiver]
+}

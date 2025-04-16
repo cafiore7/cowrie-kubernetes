@@ -1,0 +1,13 @@
+# values.yaml
+replicaCount: 1
+image:
+  repository: cowrie/cowrie
+  tag: latest
+  pullPolicy: IfNotPresent
+
+pvc:
+  storage: 1Gi
+
+service:
+  type: ClusterIP
+  port: 2222

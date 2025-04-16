@@ -1,0 +1,30 @@
+# templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-cowrie
+  labels:
+    app: cowrie
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: cowrie
+  template:
+    metadata:
+      labels:
+        app: cowrie
+    spec:
+      containers:
+        - name: cowrie
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          volumeMounts:
+            - name: cowrie-logs
+              mountPath: /cowrie/var/log
+      volumes:
+        - name: cowrie-logs
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-cowrie-logs

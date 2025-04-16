@@ -1,0 +1,6 @@
+# Chart.yaml
+apiVersion: v2
+name: cowrie
+description: A Helm chart for deploying the Cowrie honeypot
+version: 0.1.0
+appVersion: "latest"

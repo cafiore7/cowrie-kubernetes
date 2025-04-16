@@ -1,0 +1,13 @@
+# templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-cowrie-config
+data:
+  cowrie.cfg: |
+    [output_jsonlog]
+    enabled = true
+    logfile = /cowrie/var/log/cowrie.json
+    
+    [honeypot]
+    listen_endpoints = tcp:2222:interface=0.0.0.0
